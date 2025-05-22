@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Validator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Email Validator</h2>
+
+    <input type="text" id="emailInput" placeholder="Enter your email">
+    <button onclick="validateEmail()">Validate Email</button>
+    <p id="resultText"></p>
+    <p class="example">Example: example@domain.com</p>
+
+    <input type="password" id="passwordInput" placeholder="Enter your password">
+    <button onclick="validatePassword()">Validate Password</button>
+    <p id="passwordResult"></p>
+    <p>Password must be at least 8 characters long, contain letters and numbers, and include both uppercase and lowercase letters.</p>
+  </div>
+
+  <script>
+    function validateEmail() {
+      const email = document.getElementById('emailInput').value;
+      const resultText = document.getElementById('resultText');
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (regex.test(email)) {
+        resultText.textContent = 'Valid Email.';
+        resultText.style.color = 'green';
+      } else {
+        resultText.textContent = 'Invalid Email!';
+        resultText.style.color = 'red';
+      }
+    }
+
+    function validatePassword() {
+      const password = document.getElementById('passwordInput').value;
+      const passwordResult = document.getElementById('passwordResult');
+
+      const upperCheck = /[A-Z]/.test(password);
+      const lowerCheck = /[a-z]/.test(password);
+      const numberCheck = /[0-9]/.test(password);
+
+      if (password.length >= 8 && upperCheck && lowerCheck && numberCheck) {
+        passwordResult.textContent = 'Valid Password.';
+        passwordResult.style.color = 'green';
+      } else {
+        passwordResult.textContent = 'Invalid Password!';
+        passwordResult.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+
+</html>
